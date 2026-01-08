@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-12-2025 a las 02:33:54
+-- Tiempo de generación: 08-01-2026 a las 21:21:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -48,6 +48,22 @@ INSERT INTO `clientes` (`ID`, `DNI`, `NOMBRE`, `APELLIDO`, `DIRECCION`, `WHATSAP
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pagos`
+--
+
+CREATE TABLE `pagos` (
+  `id` int(11) NOT NULL,
+  `id_poliza` int(11) NOT NULL,
+  `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp(),
+  `fecha_vencimiento` date NOT NULL,
+  `fecha_pago` datetime DEFAULT NULL,
+  `monto` decimal(10,2) NOT NULL,
+  `pagado` int(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `polizas`
 --
 
@@ -68,7 +84,9 @@ INSERT INTO `polizas` (`id`, `id_cliente`, `id_seguro`, `numero`, `fecha_alta`, 
 (11, 1, 1, 1, '2025-12-28 00:00:00', NULL),
 (12, 1, 2, 2, '2025-12-28 00:00:00', NULL),
 (13, 1, 1, 33, '2025-12-28 00:00:00', NULL),
-(14, 1, 2, 35, '2025-12-28 00:37:00', NULL);
+(14, 1, 2, 35, '2025-12-28 00:37:00', NULL),
+(15, 4, 1, 36, '2026-01-06 11:14:00', NULL),
+(16, 4, 2, 37, '2026-01-06 11:15:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -126,6 +144,13 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indices de la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_poliza` (`id_poliza`);
+
+--
 -- Indices de la tabla `polizas`
 --
 ALTER TABLE `polizas`
@@ -154,10 +179,16 @@ ALTER TABLE `clientes`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `polizas`
 --
 ALTER TABLE `polizas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `seguros`
@@ -170,6 +201,16 @@ ALTER TABLE `seguros`
 --
 ALTER TABLE `usuarios`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  ADD CONSTRAINT `fk_pagos_poliza` FOREIGN KEY (`id_poliza`) REFERENCES `polizas` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

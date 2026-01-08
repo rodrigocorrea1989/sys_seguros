@@ -35,5 +35,7 @@ if ($stmt->execute()) {
     echo "Error al insertar póliza";
 }
 
+
+
 $stmt->close();
 $conn->close();
