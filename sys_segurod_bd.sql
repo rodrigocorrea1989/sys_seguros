@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2026 a las 03:01:22
+-- Tiempo de generación: 08-05-2026 a las 21:41:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -43,7 +43,52 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`ID`, `DNI`, `NOMBRE`, `APELLIDO`, `DIRECCION`, `WHATSAPP`, `EMAIL`) VALUES
 (1, 34449871, 'rodrigo', 'correa', 'chubut 1606', 543764338752, 'rodrigo@hotmail.com'),
-(4, 2064598799, 'Rodrigo', 'Corrae', 'la rioja 6060', 3764338752, 'rogelio@hotmail.com');
+(4, 2064598799, 'Rodrigo', 'Corrae', 'la rioja 6060', 3764338752, 'rogelio@hotmail.com'),
+(5, 51515151, 'juan perez', 'juan peres', '151515', 51515151, 'rodrigo@hotmail.com'),
+(6, 1212, 'test', 'test', 'chubut 1606', 1616161, 'rodrigo.eduardo.correa.7@hotmail.com'),
+(7, 515151, 'test2', 'test2', 'asas', 15151, 'rodrigo.eduardo.correa.7@hotmail.com'),
+(8, 121414, 'test4', 'test4', 'kaksmjkajms', 848488, 'rodrigo.eduardo.correa.7@hotmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historial`
+--
+
+CREATE TABLE `historial` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(60) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `accion` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historial`
+--
+
+INSERT INTO `historial` (`id`, `usuario`, `fecha`, `accion`) VALUES
+(1, 'rcorrea', '2026-05-08 12:51:22', 'Actualizar Cliente'),
+(2, 'rcorrea', '2026-05-08 12:52:30', 'Actualizar Pago'),
+(3, 'rcorrea', '2026-05-08 13:12:24', 'Actualizar Seguro'),
+(4, 'rcorrea', '2026-05-08 13:13:38', 'Actualizar Usuario'),
+(5, 'rcorrea', '2026-05-08 13:21:52', 'Actualizar Usuario'),
+(6, 'rcorrea', '2026-05-08 13:22:01', 'Actualizar Usuario'),
+(7, 'rcorrea', '2026-05-08 13:23:16', 'Actualizar Usuario'),
+(8, 'rcorrea', '2026-05-08 13:23:48', 'Actualizar Usuario'),
+(9, 'rcorrea', '2026-05-08 13:26:18', 'Actualizar Usuario'),
+(10, 'rcorrea', '2026-05-08 13:26:33', 'Actualizar Usuario'),
+(11, 'rcorrea', '2026-05-08 13:26:36', 'Actualizar Usuario'),
+(12, 'rcorrea', '2026-05-08 13:27:42', 'Actualizar Usuario'),
+(13, 'rcorrea', '2026-05-08 13:35:55', 'Procesar Pago'),
+(14, 'rcorrea', '2026-05-08 13:38:40', 'Procesar Pago'),
+(15, 'rcorrea', '2026-05-08 13:48:22', 'Actualizar Seguro'),
+(16, 'rcorrea', '2026-05-08 13:53:29', 'Procesar Pago'),
+(17, 'rcorrea', '2026-05-08 13:53:31', 'Procesar Pago'),
+(18, 'rcorrea', '2026-05-08 13:53:34', 'Procesar Pago'),
+(19, 'rcorrea', '2026-05-08 13:53:39', 'Procesar Pago'),
+(20, 'rcorrea', '2026-05-08 13:53:58', 'Procesar Pago'),
+(21, 'rcorrea', '2026-05-08 13:54:44', 'Procesar Pago'),
+(22, 'rcorrea', '2026-05-08 16:31:35', 'Actualizar Pago');
 
 -- --------------------------------------------------------
 
@@ -68,7 +113,16 @@ CREATE TABLE `pagos` (
 
 INSERT INTO `pagos` (`id`, `id_poliza`, `fecha_creacion`, `fecha_vencimiento`, `fecha_pago`, `ven`, `monto`, `pagado`) VALUES
 (193, 34, '2026-05-07 21:19:12', '2026-05-06 21:19:12', NULL, 1, 52.00, 1),
-(410, 34, '2026-05-06 21:19:12', '2026-06-05 21:19:12', NULL, 0, 52.00, 0);
+(410, 34, '2026-03-06 21:19:00', '2026-08-05 21:19:00', NULL, 1, 45.00, 1),
+(411, 35, '2026-05-08 10:54:27', '2026-06-07 10:54:27', NULL, 0, 52.00, 1),
+(412, 35, '2026-06-07 10:54:27', '2026-06-07 10:54:27', NULL, 0, 52.00, 1),
+(413, 35, '2026-06-07 10:54:27', '2026-06-07 10:54:27', NULL, 0, 52.00, 0),
+(414, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
+(415, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
+(416, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
+(417, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
+(418, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
+(419, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 0);
 
 -- --------------------------------------------------------
 
@@ -90,7 +144,8 @@ CREATE TABLE `polizas` (
 --
 
 INSERT INTO `polizas` (`id`, `id_cliente`, `id_seguro`, `numero`, `fecha_alta`, `fecha_baja`) VALUES
-(34, 4, 1, 11111, '2026-05-07 21:19:00', NULL);
+(34, 4, 1, 11111, '2026-05-07 21:19:00', NULL),
+(35, 8, 1, 11112, '2026-05-08 10:54:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -112,7 +167,7 @@ CREATE TABLE `seguros` (
 
 INSERT INTO `seguros` (`id`, `nombre`, `descripcion`, `precio`, `dias`) VALUES
 (1, 'Seguro Hogar Plus', 'Plan médico que cubre consultas, estudios básicos, urgencias y hospitalización. Incluye atención para todo el grupo familiar.', 52.00, 30),
-(2, 'Seguro Vida Protegida', 'Seguro de vida que brinda respaldo económico a la familia en caso de fallecimiento o incapacidad total. Incluye cobertura por accidentes.', 18.00, 31);
+(2, 'Seguro Vida Protegida', 'Seguro de vida que brinda respaldo econ&amp;oacute;mico a la familia en caso de fallecimiento o incapacidad total. Incluye cobertura por accidentes.', 18.00, 31);
 
 -- --------------------------------------------------------
 
@@ -134,8 +189,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID`, `NOMBRE`, `APELLIDO`, `USUARIO`, `PASS`, `TIPO`) VALUES
-(5, 'rodrigo', 'correa', 'rcorrea', '422962', 1),
-(6, 'rodrigo', 'roa', 'rroa', '422962', 0);
+(5, 'rodrigo', 'correa', 'rcorrea', '422962', 0),
+(6, 'rodri', 'roa', 'rcorrea', '422962', 0),
+(7, 'manco', 'correa', 'rcorrea', '123456', 0),
+(8, 'Rogelio', 'funer', 'rcorrea', '12345', 0);
 
 --
 -- Índices para tablas volcadas
@@ -146,6 +203,12 @@ INSERT INTO `usuarios` (`ID`, `NOMBRE`, `APELLIDO`, `USUARIO`, `PASS`, `TIPO`) V
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `historial`
+--
+ALTER TABLE `historial`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `pagos`
@@ -180,19 +243,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `historial`
+--
+ALTER TABLE `historial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=411;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=420;
 
 --
 -- AUTO_INCREMENT de la tabla `polizas`
 --
 ALTER TABLE `polizas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `seguros`
@@ -204,7 +273,7 @@ ALTER TABLE `seguros`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
