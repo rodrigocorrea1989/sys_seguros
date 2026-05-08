@@ -51,17 +51,6 @@ $conn->close();
                         <label for="contraseña">Contraseña</label>
                         <input type="password" class="form-control" id="contraseña" value="<?php echo $user['PASS']; ?>" name="contraseña">
                     </div>
-                    <div class="form-group">
-                        <label for="tipo">Tipo de usuario</label>
-                        <select class="form-control" id="tipo" name="tipo" required>
-                            <option value=1 <?php echo ($user['TIPO'] == 1) ? 'selected' : ''; ?>>
-                                Admin
-                            </option>
-                            <option value=0 <?php echo ($user['TIPO'] == 0) ? 'selected' : ''; ?>>
-                                Usuario
-                            </option>
-                        </select>
-                    </div>
                     <button type="submit" class="btn btn-primary">Actualizar</button>
                     <a class="btn btn-primary" href="usuarios">Volver</a>
                 </form>

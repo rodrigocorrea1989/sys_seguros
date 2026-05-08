@@ -17,6 +17,15 @@ $sql = "UPDATE seguros
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssdii", $nombre, $descripcion, $precio, $dias, $id);
 
+
+$usuario = $_SESSION['usuario'];
+$accion = "Actualizar Seguro";
+
+$sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+$conn->query($sql_log);
+
 if ($stmt->execute()) {
     header("Location: seguros");
 } else {

@@ -13,6 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
 
+    $usuario = $_SESSION['usuario'];
+    $accion = "Eliminar Seguro";
+
+    $sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+    $conn->query($sql_log);
+
     if ($stmt->execute()) {
         header("Location: seguros");
         exit();

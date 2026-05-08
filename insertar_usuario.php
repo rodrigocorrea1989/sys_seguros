@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = addslashes(htmlentities($_POST['nombre']));
     $apellido = addslashes(htmlentities($_POST['apellido']));
     $usuario = addslashes(htmlentities($_POST['usuario']));
-    $tipo = addslashes(htmlentities($_POST['tipo']));
+    $tipo = 1;
     $contraseña = addslashes(htmlentities($_POST['contraseña'])); // Hashear la contraseña
 
     // Preparar y ejecutar la consulta SQL
@@ -21,8 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssss", $nombre, $apellido, $usuario, $contraseña, $tipo);
 
+    $usuario = $_SESSION['usuario'];
+    $accion = "Insertar Usuario";
+
+    $sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+    $conn->query($sql_log);
+
     if ($stmt->execute()) {
-        echo header("location:usuarios");
+        header("location:usuarios");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

@@ -37,6 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dni_original
     );
 
+    $usuario = $_SESSION['usuario'];
+    $accion = "Actualizar Cliente";
+
+    $sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+    $conn->query($sql_log);
+
     if ($stmt->execute()) {
         header("Location: clientes");
         exit;

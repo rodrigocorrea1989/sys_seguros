@@ -19,8 +19,9 @@
 </div>
 <div class="container mt-3">
     <div class="row mt-3">
-        <div class="col-md-12 d-flex justify-content-between">
-            <a href="#" class="btn btn-dark col-md-12 m-2">Vencimientos</a>
+        <div class="col-md-6 d-flex justify-content-between">
+            <a href="<?php echo dirname($_SERVER['PHP_SELF']) ?>/vencimientos" class="btn btn-dark col-md-12 m-2">Vencimientos</a>
+            <a href="<?php echo dirname($_SERVER['PHP_SELF']) ?>/historial" class="btn btn-primary col-md-12 m-2">Historial</a>
         </div>
     </div>
 </div>

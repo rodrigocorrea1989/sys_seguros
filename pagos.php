@@ -193,16 +193,16 @@ if (!empty($fecha_creacion)) {
                             <h4 class="text-primary mt-3"><?php echo $nombre_seguro ?></h4>
 
                             <?php if ($pagado == 0) { ?>
-                                <a class="text text-success" href="<?= dirname($_SERVER['PHP_SELF']) ?>/editar_pago?id=<?php echo $id_pago ?>">Editar</a>
+                                <a class="text text-success" href="<?= dirname($_SERVER['PHP_SELF']) ?>/editar_pago?id=<?php echo $id_pago ?>&id_pago=<?php echo $id_pago ?>&cliente=<?php echo $id ?>&id_poliza=<?php echo $id_poliza ?>">Editar</a>
 
                             <?php } else { ?>
 
-                                <a class="text text-primary">Imprimir comprobante</a>
+                                <a class="text text-primary" href="<?= dirname($_SERVER['PHP_SELF']) ?>/pago_pdf?id=<?php echo $id ?>&id_pago=<?php echo $id_pago ?>" target="_blank">Imprimir comprobante</a>
 
                             <?php } ?>
                         </div>
 
-                        <div class="col-md-2 p-3">
+                        <div class=" col-md-2 p-3">
                             <h5>Fecha Creación</h5>
                             <p><?php echo $fecha_creada; ?></p>
                         </div>

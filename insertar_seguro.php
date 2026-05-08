@@ -20,6 +20,14 @@ $sql = "INSERT INTO seguros (nombre, descripcion, precio, dias)
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssdi", $nombre, $descripcion, $precio, $dias);
 
+$usuario = $_SESSION['usuario'];
+$accion = "Insertar Seguro";
+
+$sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+$conn->query($sql_log);
+
 if ($stmt->execute()) {
     header("location:seguros");
 } else {
@@ -27,4 +35,4 @@ if ($stmt->execute()) {
 }
 
 $stmt->close();
-$conexion->close();
+$conn->close();

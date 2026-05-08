@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recoger datos del formulario
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
-    $usuario = $_POST['usuario'];
+    $usuario = 1;
     $contraseña = $_POST['contraseña'];
     $tipo = $_POST['tipo'];
 
@@ -32,9 +32,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("sssis", $nombre, $apellido, $usuario, $tipo, $id);
     }
 
+    $usuario = $_SESSION['usuario'];
+    $accion = "Actualizar Usuario";
+
+    $sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+    $conn->query($sql_log);
+
     // Ejecutar la consulta y verificar si fue exitosa
     if ($stmt->execute()) {
-        echo header("location:usuarios");
+        header("location:usuarios");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

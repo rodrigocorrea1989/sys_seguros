@@ -31,13 +31,6 @@ include("comprobar_acceso.php");
                             <label for="contraseña">Contraseña</label>
                             <input type="password" class="form-control" name="contraseña" id="contraseña" placeholder="Ingresa tu contraseña">
                         </div>
-                        <div class="form-group">
-                            <label for="Tipo">Tipo</label>
-                            <select class="custom-select" id="Tipo" name="tipo">
-                                <option value=0 selected>Usuario</option>
-                                <option value=1>Admin</option>
-                            </select>
-                        </div>
                         <button type="submit" class="btn btn-primary">Registrar</button>
                         <a class="btn btn-primary" href="usuarios">Volver</a>
                     </form>

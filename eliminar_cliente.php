@@ -17,6 +17,14 @@ $sql = "DELETE FROM clientes WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id_cliente);
 
+$usuario = $_SESSION['usuario'];
+$accion = "Eliminar Cliente";
+
+$sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+$conn->query($sql_log);
+
 if ($stmt->execute()) {
     header("Location: clientes");
     exit;

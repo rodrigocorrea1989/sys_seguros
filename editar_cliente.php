@@ -38,7 +38,7 @@ $cliente = mysqli_fetch_assoc($resultado);
                             <input type="text" class="form-control text-danger" name="direccion" id="direccion" placeholder="Ingresa dirección del cliente" value="<?php echo $cliente['DIRECCION']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="wp">Whatsapp</label><br>
+                            <label for="wp">Télefono</label><br>
                             <span class="text-danger">No utilizar caracteres especiales como guiones o puntos.</span>
                             <input type="number" class="form-control text-danger" name="wp" id="wp" placeholder="Ejemplo: 541111223344" value="<?php echo $cliente['WHATSAPP']; ?>">
                         </div>

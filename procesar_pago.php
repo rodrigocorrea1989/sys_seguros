@@ -29,4 +29,13 @@ $sql_insert = "INSERT INTO pagos
 $result = mysqli_query($conn, $sql_insert);
 
 
+$usuario = $_SESSION['usuario'];
+$accion = "Procesar Pago";
+
+$sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+$conn->query($sql_log);
+
+
 header("Location:$base/pagos?id=$id_poliza&cliente=$id");

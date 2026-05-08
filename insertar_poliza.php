@@ -76,6 +76,14 @@ VALUES (?, ?, ?, ?, ?)";
     $stmt_pago->execute();
     $stmt_pago->close();
 
+    $usuario = $_SESSION['usuario'];
+    $accion = "Insertar Poliza";
+
+    $sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+    $conn->query($sql_log);
+
     header("Location: polizas_asociadas?id=" . $id_return);
     exit;
 } else {

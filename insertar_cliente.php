@@ -22,8 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssss", $dni, $nombre, $apellido, $direccion, $wp, $mail);
 
+    $usuario = $_SESSION['usuario'];
+    $accion = "Insertar Cliente";
+
+    $sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+    $conn->query($sql_log);
+
     if ($stmt->execute()) {
-        echo header("location:clientes");
+        header("location:clientes");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

@@ -5,7 +5,7 @@ include("header.php");
 
 include("conn.php");
 
-include("comprobar_acceso.php"); 
+include("comprobar_acceso.php");
 // Obtener el ID del usuario a eliminar
 $id = $_GET['id'];
 
@@ -14,9 +14,18 @@ $sql = "DELETE FROM usuarios WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
 
+
+$usuario = $_SESSION['usuario'];
+$accion = "Eliminar Usuario";
+
+$sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+$conn->query($sql_log);
+
 // Ejecutar la consulta y verificar si fue exitosa
 if ($stmt->execute()) {
-    echo header("location:usuarios");
+    header("location:usuarios");
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

@@ -6,6 +6,17 @@ include("comprobar_acceso.php");
 
 $id_pago = intval($_GET['id'] ?? 0);
 
+$id_cliente = intval($_GET['cliente'] ?? 0);
+
+$id_poliza = intval($_GET['id_poliza'] ?? 0);
+
+
+//echo $id_pago . "<br>";
+
+//echo $id_poliza . "<br>";
+
+//echo $id_cliente . "<br>";
+
 if (!$id_pago) {
     die("ID de pago inválido");
 }
@@ -211,6 +222,10 @@ $id_poliza = $row['id_poliza'];
                     </a>
 
                 </div>
+
+                <input type="hidden" name="id" value="<?php echo $id_cliente ?>">
+
+                <input type="hidden" name="id_poliza" value="<?php echo $id_poliza ?>">
 
             </form>
 

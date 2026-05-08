@@ -5,6 +5,11 @@ include("comprobar_acceso.php");
 $base = dirname($_SERVER['PHP_SELF']);
 
 
+
+$id = intval($_POST['id'] ?? 0);
+
+$id_poliza = intval($_POST['id_poliza'] ?? 0);
+
 $id_pago = intval($_POST['id_pago'] ?? 0);
 
 $monto = floatval($_POST['monto'] ?? 0);
@@ -46,6 +51,14 @@ $stmt->bind_param(
     $pagado,
     $id_pago
 );
+
+$usuario = $_SESSION['usuario'];
+$accion = "Actualizar Pago";
+
+$sql_log = "INSERT INTO historial (usuario, fecha, accion)
+            VALUES ('$usuario', NOW(), '$accion')";
+
+$conn->query($sql_log);
 
 if ($stmt->execute()) {
 
