@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-01-2026 a las 21:21:27
+-- Tiempo de generación: 08-05-2026 a las 03:01:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -55,11 +55,20 @@ CREATE TABLE `pagos` (
   `id` int(11) NOT NULL,
   `id_poliza` int(11) NOT NULL,
   `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_vencimiento` date NOT NULL,
+  `fecha_vencimiento` datetime NOT NULL,
   `fecha_pago` datetime DEFAULT NULL,
+  `ven` int(11) NOT NULL DEFAULT 0,
   `monto` decimal(10,2) NOT NULL,
   `pagado` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pagos`
+--
+
+INSERT INTO `pagos` (`id`, `id_poliza`, `fecha_creacion`, `fecha_vencimiento`, `fecha_pago`, `ven`, `monto`, `pagado`) VALUES
+(193, 34, '2026-05-07 21:19:12', '2026-05-06 21:19:12', NULL, 1, 52.00, 1),
+(410, 34, '2026-05-06 21:19:12', '2026-06-05 21:19:12', NULL, 0, 52.00, 0);
 
 -- --------------------------------------------------------
 
@@ -81,12 +90,7 @@ CREATE TABLE `polizas` (
 --
 
 INSERT INTO `polizas` (`id`, `id_cliente`, `id_seguro`, `numero`, `fecha_alta`, `fecha_baja`) VALUES
-(11, 1, 1, 1, '2025-12-28 00:00:00', NULL),
-(12, 1, 2, 2, '2025-12-28 00:00:00', NULL),
-(13, 1, 1, 33, '2025-12-28 00:00:00', NULL),
-(14, 1, 2, 35, '2025-12-28 00:37:00', NULL),
-(15, 4, 1, 36, '2026-01-06 11:14:00', NULL),
-(16, 4, 2, 37, '2026-01-06 11:15:00', NULL);
+(34, 4, 1, 11111, '2026-05-07 21:19:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -108,7 +112,7 @@ CREATE TABLE `seguros` (
 
 INSERT INTO `seguros` (`id`, `nombre`, `descripcion`, `precio`, `dias`) VALUES
 (1, 'Seguro Hogar Plus', 'Plan médico que cubre consultas, estudios básicos, urgencias y hospitalización. Incluye atención para todo el grupo familiar.', 52.00, 30),
-(2, 'Seguro Vida Protegida', 'Seguro de vida que brinda respaldo económico a la familia en caso de fallecimiento o incapacidad total. Incluye cobertura por accidentes.', 18.00, 45);
+(2, 'Seguro Vida Protegida', 'Seguro de vida que brinda respaldo económico a la familia en caso de fallecimiento o incapacidad total. Incluye cobertura por accidentes.', 18.00, 31);
 
 -- --------------------------------------------------------
 
@@ -182,13 +186,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=411;
 
 --
 -- AUTO_INCREMENT de la tabla `polizas`
 --
 ALTER TABLE `polizas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `seguros`
