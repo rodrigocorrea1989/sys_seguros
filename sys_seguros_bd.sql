@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2026 a las 21:41:00
+-- Tiempo de generación: 10-05-2026 a las 01:05:42
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -88,7 +88,29 @@ INSERT INTO `historial` (`id`, `usuario`, `fecha`, `accion`) VALUES
 (19, 'rcorrea', '2026-05-08 13:53:39', 'Procesar Pago'),
 (20, 'rcorrea', '2026-05-08 13:53:58', 'Procesar Pago'),
 (21, 'rcorrea', '2026-05-08 13:54:44', 'Procesar Pago'),
-(22, 'rcorrea', '2026-05-08 16:31:35', 'Actualizar Pago');
+(22, 'rcorrea', '2026-05-08 16:31:35', 'Actualizar Pago'),
+(23, 'rcorrea', '2026-05-09 12:25:32', 'Procesar Pago'),
+(24, 'rcorrea', '2026-05-09 12:29:26', 'Procesar Pago'),
+(25, 'rcorrea', '2026-05-09 12:31:31', 'Procesar Pago'),
+(26, 'rcorrea', '2026-05-09 12:39:06', 'Procesar Pago'),
+(27, 'rcorrea', '2026-05-09 12:40:55', 'Procesar Pago'),
+(28, 'rcorrea', '2026-05-09 12:42:18', 'Procesar Pago'),
+(29, 'rcorrea', '2026-05-09 13:09:18', 'Procesar Pago'),
+(30, 'rcorrea', '2026-05-09 13:13:38', 'Procesar Pago'),
+(31, 'rcorrea', '2026-05-09 13:14:24', 'Procesar Pago'),
+(32, 'rcorrea', '2026-05-09 13:14:36', 'Procesar Pago'),
+(33, 'rcorrea', '2026-05-09 14:34:48', 'Procesar Pago'),
+(34, 'rcorrea', '2026-05-09 14:47:03', 'Procesar Pago'),
+(35, 'rcorrea', '2026-05-09 15:32:22', 'Procesar Pago'),
+(36, 'rcorrea', '2026-05-09 15:33:06', 'Procesar Pago'),
+(37, 'rcorrea', '2026-05-09 15:33:56', 'Procesar Pago'),
+(38, 'rcorrea', '2026-05-09 15:35:06', 'Procesar Pago'),
+(39, 'rcorrea', '2026-05-09 15:42:23', 'Procesar Pago'),
+(40, 'rcorrea', '2026-05-09 15:43:17', 'Procesar Pago'),
+(41, 'rcorrea', '2026-05-09 15:45:12', 'Procesar Pago'),
+(42, 'rcorrea', '2026-05-09 15:46:08', 'Procesar Pago'),
+(43, 'rcorrea', '2026-05-09 18:03:48', 'Actualizar Pago'),
+(44, 'rcorrea', '2026-05-09 18:04:34', 'Procesar Pago');
 
 -- --------------------------------------------------------
 
@@ -115,14 +137,16 @@ INSERT INTO `pagos` (`id`, `id_poliza`, `fecha_creacion`, `fecha_vencimiento`, `
 (193, 34, '2026-05-07 21:19:12', '2026-05-06 21:19:12', NULL, 1, 52.00, 1),
 (410, 34, '2026-03-06 21:19:00', '2026-08-05 21:19:00', NULL, 1, 45.00, 1),
 (411, 35, '2026-05-08 10:54:27', '2026-06-07 10:54:27', NULL, 0, 52.00, 1),
-(412, 35, '2026-06-07 10:54:27', '2026-06-07 10:54:27', NULL, 0, 52.00, 1),
-(413, 35, '2026-06-07 10:54:27', '2026-06-07 10:54:27', NULL, 0, 52.00, 0),
 (414, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
 (415, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
 (416, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
 (417, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
 (418, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
-(419, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 0);
+(419, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 0),
+(442, 35, '2026-06-07 10:54:27', '2026-07-07 10:54:27', NULL, 0, 52.00, 1),
+(443, 35, '2026-07-07 10:54:27', '2026-08-06 10:54:27', NULL, 0, 52.00, 1),
+(444, 35, '2026-08-06 10:54:27', '2026-09-05 10:54:27', NULL, 0, 52.00, 1),
+(445, 35, '2026-09-05 10:54:27', '2026-10-05 10:54:27', NULL, 0, 52.00, 0);
 
 -- --------------------------------------------------------
 
@@ -249,13 +273,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=420;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=446;
 
 --
 -- AUTO_INCREMENT de la tabla `polizas`

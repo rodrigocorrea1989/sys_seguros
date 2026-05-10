@@ -145,6 +145,10 @@ if (!empty($fecha_creacion)) {
 
         $fecha_hoy = time();
 
+        // test fecha
+        //$fecha_hoy = strtotime('07-07-2026 10:58');
+        //test fecha
+
         // Timestamp vencimiento ya lo tenés en $timestamp + días
         $timestamp_vencimiento = $timestamp;
 
@@ -173,6 +177,8 @@ if (!empty($fecha_creacion)) {
 
             if ($ven == 0) {
 
+                $ven = 1;
+
                 $sql3 = "UPDATE pagos 
                 SET ven = 1
                 WHERE id = $id_pago";
@@ -180,6 +186,18 @@ if (!empty($fecha_creacion)) {
                 $result3 = mysqli_query($conn, $sql3);
             }
         } else {
+
+            if ($ven == 1) {
+
+                $ven = 0;
+
+                $sql3 = "UPDATE pagos 
+                SET ven = 0
+                WHERE id = $id_pago";
+
+                $result3 = mysqli_query($conn, $sql3);
+            }
+
 
             $estado = "Activo";
             $clase = "text-success";
@@ -203,7 +221,7 @@ if (!empty($fecha_creacion)) {
                         </div>
 
                         <div class=" col-md-2 p-3">
-                            <h5>Fecha Creación</h5>
+                            <h5>Fecha Inicio</h5>
                             <p><?php echo $fecha_creada; ?></p>
                         </div>
 
@@ -230,14 +248,14 @@ if (!empty($fecha_creacion)) {
 
                             <?php if ($pagado == 0) { ?>
                                 <a class="btn btn-danger" onclick="confirmar_pago();"
-                                    href="<?= dirname($_SERVER['PHP_SELF']) ?>/procesar_pago?id=<?php echo $id_poliza ?>&id_pago=<?php echo $id_pago ?>&cliente=<?php echo $id ?>&fecha_vencimiento2=<?php echo $fecha_vencimiento2 ?>&fecha_vencimiento_new=<?php echo $fecha_vencimiento_new ?>&monto_real=<?php echo $montado ?>">
+                                    href="<?= dirname($_SERVER['PHP_SELF']) ?>/procesar_pago?id=<?php echo $id_poliza ?>&id_pago=<?php echo $id_pago ?>&cliente=<?php echo $id ?>&fecha_creacion=<?php echo $fecha_creacion ?>&fecha_vencimiento_new=<?php echo $fecha_vencimiento_new ?>&monto_real=<?php echo $montado ?>&dias=<?php echo $dias ?>&ven=<?php echo $ven ?>">
                                     Cobrar
                                 </a>
 
 
                             <?php } else { ?>
 
-                                <a class="btn btn-primary">
+                                <a class=" btn btn-primary">
                                     Pagado
                                 </a>
 
@@ -262,3 +280,113 @@ if (!empty($fecha_creacion)) {
     </div>
 
 </div>
+
+<?php
+
+//comprobacion de pago sin vencimiento
+
+
+$stmt2 = $conn->prepare("
+    SELECT 
+        pagos.id,
+        pagos.id_poliza,
+        pagos.monto,
+        pagos.fecha_creacion,
+        pagos.fecha_vencimiento,
+        polizas.id_seguro,
+        seguros.nombre AS nombre_seguro,
+        seguros.dias AS dias,
+        seguros.precio AS monto_real,
+        pagos.ven AS ven,
+        pagos.pagado AS pagado,
+        pagos.monto AS montado
+    FROM pagos
+    INNER JOIN polizas ON pagos.id_poliza = polizas.id
+    INNER JOIN seguros ON polizas.id_seguro = seguros.id
+    WHERE pagos.id_poliza = ?
+    ORDER BY pagos.id DESC
+    LIMIT 1
+");
+
+$stmt2->bind_param("i", $id_poliza);
+
+if (!$stmt2->execute()) {
+    die("Error SQL: " . $stmt->error);
+}
+
+$stmt2->store_result();
+
+if ($stmt2->num_rows == 0) {
+    die("No hay resultados");
+}
+
+$stmt2->bind_result(
+    $id_pago,
+    $id_poliza_db,
+    $monto,
+    $fecha_creacion,
+    $fecha_vencimiento2,
+    $id_seguro,
+    $nombre_seguro,
+    $dias,
+    $monto_real,
+    $ven,
+    $pagado,
+    $montado
+);
+
+while ($stmt2->fetch()) {
+
+    echo $nombre_seguro . "<br>";
+
+    echo date('d/m/Y H:i', strtotime((string)$fecha_creacion)) . "<br>";
+
+    echo date('d/m/Y H:i', strtotime((string)$fecha_vencimiento2)) . "<br>";
+
+    echo "PAGADO: " . $pagado . "<br>";
+
+    $fecha_vencimiento_new = date(
+        'Y-m-d H:i:s',
+        strtotime($fecha_vencimiento2 . " + 0 days")
+
+    );
+
+
+    $fecha_hoy = time();
+
+    // test fecha
+    //$fecha_hoy = strtotime('07-05-2027 10:58');
+    //test fecha
+
+
+    $timestamp_fechavenc = strtotime($fecha_vencimiento_new);
+
+    $fecha_creacion2 = date(
+        'Y-m-d H:i:s',
+        strtotime($fecha_creacion . " + $dias days")
+    );
+
+
+    $fecha_vencimiento2 = date(
+        'Y-m-d H:i:s',
+        strtotime($fecha_creacion2 . " + $dias days")
+    );
+
+
+
+    if ($fecha_hoy >= $timestamp_fechavenc && $pagado == 1) {
+
+        echo "----SE CREA OTRO PAGO---";
+
+        $sql_insert = "INSERT INTO pagos
+                (id_poliza, fecha_creacion, fecha_vencimiento, monto, pagado)
+            VALUES ('$id_poliza', '$fecha_creacion2' , '$fecha_vencimiento2', '$monto_real', 0)";
+
+        $result = mysqli_query($conn, $sql_insert);
+
+
+        header("Location:$base/pagos?id=$id_poliza&cliente=$id");
+    }
+}
+
+?>

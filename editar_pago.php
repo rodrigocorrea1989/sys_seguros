@@ -3,12 +3,23 @@
 include('header.php');
 include('conn.php');
 include("comprobar_acceso.php");
+include("alertas.php");
+$base = dirname($_SERVER['PHP_SELF']);
 
 $id_pago = intval($_GET['id'] ?? 0);
 
 $id_cliente = intval($_GET['cliente'] ?? 0);
 
 $id_poliza = intval($_GET['id_poliza'] ?? 0);
+
+$sqlD = "SELECT ID , DNI , NOMBRE , APELLIDO , DIRECCION , WHATSAPP , EMAIL FROM clientes WHERE ID=$id_cliente ORDER BY ID DESC";
+$resultD = $conn->query($sqlD);
+
+while ($row = $resultD->fetch_assoc()) {
+
+    $NOMBRE = $row["NOMBRE"];
+    $APELLIDO = $row["APELLIDO"];
+}
 
 
 //echo $id_pago . "<br>";
@@ -87,7 +98,7 @@ $id_poliza = $row['id_poliza'];
     <div class="card shadow">
 
         <div class="card-header bg-primary text-white">
-            <h3>Editar Pago</h3>
+            <h3>Editar Pago (<?php echo $NOMBRE . ' ' . $APELLIDO ?>)</h3>
         </div>
 
         <div class="card-body">
@@ -221,6 +232,8 @@ $id_poliza = $row['id_poliza'];
                         Volver
                     </a>
 
+
+
                 </div>
 
                 <input type="hidden" name="id" value="<?php echo $id_cliente ?>">
@@ -228,7 +241,11 @@ $id_poliza = $row['id_poliza'];
                 <input type="hidden" name="id_poliza" value="<?php echo $id_poliza ?>">
 
             </form>
+            <br>
 
+            <a class="btn btn-danger" onclick="eliminar_poliza(); " href="<?php echo $base ?>/eliminar_pago?id=<?php echo $id_cliente; ?>&id_poliza=<?php echo $id_poliza; ?>&id_pago=<?php echo $id_pago ?>">
+                Eliminar pago
+            </a>
         </div>
 
     </div>

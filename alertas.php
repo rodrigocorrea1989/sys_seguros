@@ -27,4 +27,11 @@
             event.preventDefault();
         }
     }
+
+    function eliminar_poliza() {
+        var respuesta = confirm("¿Desea eliminar la póliza?");
+        if (respuesta == false) {
+            event.preventDefault();
+        }
+    }
 </script>

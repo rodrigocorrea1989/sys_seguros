@@ -26,7 +26,8 @@ SELECT
     pagos.fecha_creacion,
     pagos.fecha_vencimiento,
     seguros.nombre AS seguro,
-    seguros.descripcion AS des
+    seguros.descripcion AS des,
+    polizas.numero AS npoliza
 FROM pagos
 
 INNER JOIN polizas 
@@ -63,6 +64,7 @@ $dni = $row['DNI'];
 $direccion = $row['DIRECCION'];
 $telefono = $row['WHATSAPP'];
 $des = $row['des'];
+$npoliza = $row['npoliza'];
 
 $seguro = $row['seguro'];
 
@@ -128,6 +130,16 @@ $pdf->Cell(50, 10, 'Seguro:');
 $pdf->SetFont('Arial', '', 12);
 
 $pdf->Cell(100, 10, utf8_decode($seguro), 0, 1);
+
+$pdf->SetFont('Arial', 'B', 12);
+
+$pdf->SetFont('Arial', 'B', 12);
+
+$pdf->Cell(50, 10, 'Num. de Poliza:');
+
+$pdf->SetFont('Arial', '', 12);
+
+$pdf->Cell(100, 10,  $npoliza, 0, 1);
 
 $pdf->SetFont('Arial', 'B', 12);
 

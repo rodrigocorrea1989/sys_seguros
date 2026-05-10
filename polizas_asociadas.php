@@ -47,7 +47,7 @@ $result = $stmt->get_result();
 
 <div class="container-fluid mt-5">
     <center>
-        <h2 class="mt-3 text-info">Polizas Asociadas a <?php echo $cliente ?> </h2>
+        <h2 class="mt-3 text-info">Pólizas Asociadas a <?php echo $cliente ?> </h2>
     </center>
     <a class="btn btn-primary mt-2 mb-2" href="nueva_poliza?id=<?php echo $id ?>">Asociar Nueva Poliza</a>
     <table class="table">
