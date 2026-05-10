@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2026 a las 01:05:42
+-- Tiempo de generación: 10-05-2026 a las 21:13:02
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -47,7 +47,7 @@ INSERT INTO `clientes` (`ID`, `DNI`, `NOMBRE`, `APELLIDO`, `DIRECCION`, `WHATSAP
 (5, 51515151, 'juan perez', 'juan peres', '151515', 51515151, 'rodrigo@hotmail.com'),
 (6, 1212, 'test', 'test', 'chubut 1606', 1616161, 'rodrigo.eduardo.correa.7@hotmail.com'),
 (7, 515151, 'test2', 'test2', 'asas', 15151, 'rodrigo.eduardo.correa.7@hotmail.com'),
-(8, 121414, 'test4', 'test4', 'kaksmjkajms', 848488, 'rodrigo.eduardo.correa.7@hotmail.com');
+(8, 121414, 'Rodrigo', 'Roa', 'kaksmjkajms', 543764338752, 'rodrigo.eduardo.correa.7@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -110,7 +110,13 @@ INSERT INTO `historial` (`id`, `usuario`, `fecha`, `accion`) VALUES
 (41, 'rcorrea', '2026-05-09 15:45:12', 'Procesar Pago'),
 (42, 'rcorrea', '2026-05-09 15:46:08', 'Procesar Pago'),
 (43, 'rcorrea', '2026-05-09 18:03:48', 'Actualizar Pago'),
-(44, 'rcorrea', '2026-05-09 18:04:34', 'Procesar Pago');
+(44, 'rcorrea', '2026-05-09 18:04:34', 'Procesar Pago'),
+(45, 'rcorrea', '2026-05-10 12:50:27', 'Insertar Poliza'),
+(46, 'rcorrea', '2026-05-10 12:52:13', 'Insertar Poliza'),
+(47, 'rcorrea', '2026-05-10 13:37:55', 'Baja Poliza'),
+(48, 'rcorrea', '2026-05-10 13:39:00', 'Actualizar Pago'),
+(49, 'rcorrea', '2026-05-10 15:46:14', 'Actualizar Cliente'),
+(50, 'rcorrea', '2026-05-10 16:11:26', 'Baja Poliza');
 
 -- --------------------------------------------------------
 
@@ -134,19 +140,8 @@ CREATE TABLE `pagos` (
 --
 
 INSERT INTO `pagos` (`id`, `id_poliza`, `fecha_creacion`, `fecha_vencimiento`, `fecha_pago`, `ven`, `monto`, `pagado`) VALUES
-(193, 34, '2026-05-07 21:19:12', '2026-05-06 21:19:12', NULL, 1, 52.00, 1),
-(410, 34, '2026-03-06 21:19:00', '2026-08-05 21:19:00', NULL, 1, 45.00, 1),
-(411, 35, '2026-05-08 10:54:27', '2026-06-07 10:54:27', NULL, 0, 52.00, 1),
-(414, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
-(415, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
-(416, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
-(417, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
-(418, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 1),
-(419, 34, '2026-08-05 21:19:00', '2026-08-05 21:19:00', NULL, 0, 45.00, 0),
-(442, 35, '2026-06-07 10:54:27', '2026-07-07 10:54:27', NULL, 0, 52.00, 1),
-(443, 35, '2026-07-07 10:54:27', '2026-08-06 10:54:27', NULL, 0, 52.00, 1),
-(444, 35, '2026-08-06 10:54:27', '2026-09-05 10:54:27', NULL, 0, 52.00, 1),
-(445, 35, '2026-09-05 10:54:27', '2026-10-05 10:54:27', NULL, 0, 52.00, 0);
+(2, 37, '2026-03-10 12:52:00', '2026-04-10 12:52:00', '2026-05-10 16:11:59', 1, 18.00, 1),
+(4, 37, '2026-04-10 12:52:00', '2026-05-11 12:52:00', NULL, 0, 18.00, 0);
 
 -- --------------------------------------------------------
 
@@ -160,16 +155,19 @@ CREATE TABLE `polizas` (
   `id_seguro` int(11) NOT NULL,
   `numero` double NOT NULL,
   `fecha_alta` datetime NOT NULL,
-  `fecha_baja` datetime DEFAULT NULL
+  `fecha_baja` datetime DEFAULT NULL,
+  `baja` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `polizas`
 --
 
-INSERT INTO `polizas` (`id`, `id_cliente`, `id_seguro`, `numero`, `fecha_alta`, `fecha_baja`) VALUES
-(34, 4, 1, 11111, '2026-05-07 21:19:00', NULL),
-(35, 8, 1, 11112, '2026-05-08 10:54:00', NULL);
+INSERT INTO `polizas` (`id`, `id_cliente`, `id_seguro`, `numero`, `fecha_alta`, `fecha_baja`, `baja`) VALUES
+(34, 4, 1, 11111, '2026-05-07 21:19:00', NULL, 0),
+(35, 8, 1, 11112, '2026-05-08 10:54:00', NULL, 0),
+(36, 8, 1, 11113, '2026-05-10 12:50:00', NULL, 0),
+(37, 8, 2, 11114, '2026-05-10 12:52:00', '2026-05-10 16:11:26', 0);
 
 -- --------------------------------------------------------
 
@@ -273,19 +271,19 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=446;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `polizas`
 --
 ALTER TABLE `polizas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `seguros`

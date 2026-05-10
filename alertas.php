@@ -28,8 +28,15 @@
         }
     }
 
-    function eliminar_poliza() {
-        var respuesta = confirm("¿Desea eliminar la póliza?");
+    function eliminar_pago() {
+        var respuesta = confirm("¿Desea eliminar el pago?");
+        if (respuesta == false) {
+            event.preventDefault();
+        }
+    }
+
+    function dar_baja() {
+        var respuesta = confirm("¿Desea dar de baja la póliza?");
         if (respuesta == false) {
             event.preventDefault();
         }

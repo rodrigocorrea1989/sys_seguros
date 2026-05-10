@@ -32,6 +32,7 @@ $sql2 = "SELECT
             s.precio,
             p.fecha_alta,
             p.fecha_baja,
+            p.baja,
             s.id AS id_seguro
         FROM polizas p 
         INNER JOIN seguros s ON p.id_seguro = s.id
@@ -60,13 +61,29 @@ $result = $stmt->get_result();
                 <th scope="col">Fecha de Alta</th>
                 <!--<th scope="col"></th>-->
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <?php if ($result->num_rows > 0): ?>
                 <?php $i = 1; ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
+
+
+
+                    <?php
+
+                    $baja = $row['baja'];
+
+                    if ($baja == 1) { ?>
+
+                        <tr class="text-danger">
+
+                        <?php } else { ?>
+
+                        <tr>
+
+                        <?php } ?>
                         <th scope="row"><?php echo $i++; ?></th>
                         <td><?php echo $row['numero']; ?></td>
                         <td><a href="perfil_poliza?id=<?php echo  $row['id_seguro'] ?>&id_cliente=<?php echo $id  ?>"><?php echo htmlspecialchars($row['seguro']); ?></a></td>
@@ -79,16 +96,26 @@ $result = $stmt->get_result();
                                     <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567" />
                                 </svg></a></td>
                         <!--<td><a class="btn btn-info">Pausar</a></td>-->
-                        <!--<td><a class="btn btn-danger">Dar de baja</a></td>-->
+
+                        <?php if ($baja == 1) { ?>
+
+                            <td><a class="btn btn-danger">Dado de baja</a></td>
+
+                        <?php } else { ?>
+
+                            <td><a class="btn btn-dark" href="baja_poliza?id=<?php echo $row['id'] ?>&cliente=<?PHP echo intval($_GET['id']) ?>" onclick="dar_baja();">Dar de baja</a></td>
+
+                        <?php } ?>
+
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">
+                            No hay pólizas asociadas a este cliente
+                        </td>
                     </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="6" class="text-center text-muted">
-                        No hay pólizas asociadas a este cliente
-                    </td>
-                </tr>
-            <?php endif; ?>
+                <?php endif; ?>
         </tbody>
     </table>
     <a class="btn btn-primary" href="clientes">Volver</a>

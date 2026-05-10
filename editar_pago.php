@@ -243,7 +243,7 @@ $id_poliza = $row['id_poliza'];
             </form>
             <br>
 
-            <a class="btn btn-danger" onclick="eliminar_poliza(); " href="<?php echo $base ?>/eliminar_pago?id=<?php echo $id_cliente; ?>&id_poliza=<?php echo $id_poliza; ?>&id_pago=<?php echo $id_pago ?>">
+            <a class="btn btn-danger" onclick="eliminar_pago(); " href="<?php echo $base ?>/eliminar_pago?id=<?php echo $id_cliente; ?>&id_poliza=<?php echo $id_poliza; ?>&id_pago=<?php echo $id_pago ?>">
                 Eliminar pago
             </a>
         </div>

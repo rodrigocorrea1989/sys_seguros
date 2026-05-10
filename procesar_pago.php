@@ -13,6 +13,7 @@ $fecha_vencimiento_new = addslashes(htmlentities($_GET['fecha_vencimiento_new'] 
 $monto_real = addslashes(htmlentities($_GET['monto_real'] ?? null));
 $dias = addslashes(htmlentities($_GET['dias'] ?? null));
 $ven = addslashes(htmlentities($_GET['ven'] ?? null));
+$baja = addslashes(htmlentities($_GET['baja'] ?? null));
 
 
 $fecha_creacion2 = date(
@@ -29,7 +30,7 @@ $fecha_vencimiento2 = date(
 
 
 $sql3 = "UPDATE pagos 
-                SET pagado = 1
+                SET pagado = 1 ,  fecha_pago = now()
                 WHERE id = $id_pago";
 
 $result3 = mysqli_query($conn, $sql3);
@@ -39,13 +40,14 @@ $result3 = mysqli_query($conn, $sql3);
 
 if ($ven == 1) {
 
-    $sql_insert = "INSERT INTO pagos
+    if ($baja == 0) {
+
+        $sql_insert = "INSERT INTO pagos
                 (id_poliza, fecha_creacion, fecha_vencimiento, monto, pagado)
             VALUES ('$id_poliza', '$fecha_creacion2' , '$fecha_vencimiento2', '$monto_real', 0)";
 
-    $result = mysqli_query($conn, $sql_insert);
-
-
+        $result = mysqli_query($conn, $sql_insert);
+    }
     $usuario = $_SESSION['usuario'];
     $accion = "Procesar Pago";
 

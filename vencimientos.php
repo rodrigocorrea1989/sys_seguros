@@ -31,9 +31,22 @@ $total_paginas = ceil($total_clientes / $limite);
 
 // ---------------- CONSULTA PRINCIPAL ----------------
 
-$sql = "SELECT ID, DNI, NOMBRE, APELLIDO, DIRECCION, WHATSAPP, EMAIL 
-        FROM clientes 
-        ORDER BY ID DESC
+
+$sql = "SELECT DISTINCT
+            clientes.ID,
+            clientes.DNI,
+            clientes.NOMBRE,
+            clientes.APELLIDO,
+            clientes.DIRECCION,
+            clientes.WHATSAPP,
+            clientes.EMAIL
+        FROM clientes
+        INNER JOIN polizas 
+            ON polizas.id_cliente = clientes.ID
+        INNER JOIN pagos 
+            ON pagos.id_poliza = polizas.id
+        WHERE pagos.ven = 1 AND pagos.pagado=0
+        ORDER BY clientes.ID DESC
         LIMIT $desde, $limite";
 
 $result = $conn->query($sql);
@@ -43,7 +56,7 @@ $result = $conn->query($sql);
 <div class="container mt-3">
 
     <center>
-        <h2 class="mt-3 text-danger">Clientes con Vencimientos</h2>
+        <h2 class="mt-3 text-danger">Clientes con Vencimientos y pendientes de Pago</h2>
     </center>
 
 
@@ -70,6 +83,7 @@ $result = $conn->query($sql);
                     <center>E-mail</center>
                 </th>
                 <th> </th>
+                <th> </th>
             </tr>
         </thead>
 
@@ -88,7 +102,8 @@ $result = $conn->query($sql);
                     $DIRECCION = $row["DIRECCION"];
                     $WHATSAPP = $row["WHATSAPP"];
                     $EMAIL = $row["EMAIL"];
-
+                    $np = $NOMBRE . ' ' . $APELLIDO;
+                    $wp = $WHATSAPP;
                     echo "
                     <tr>
 
@@ -129,6 +144,21 @@ $result = $conn->query($sql);
                                 </a>
 
                             </center>
+                        </td>
+                        <td>
+                            <center>
+                                <a class='btn btn-success' 
+                                target='_blank' 
+                                href='https://wa.me/$wp?text=Estimado%20cliente%20$np%20le%20informamos%20que%20en%20el%20día%20de%20la%20fecha%20tiene%20un%20saldo%20pendiente.'>
+
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-whatsapp' viewBox='0 0 16 16'>
+                                        <path d='M13.601 2.326A7.854 7.854 0 0 0 8.004 0C3.58 0 .003 3.577.003 8c0 1.409.369 2.784 1.07 3.995L0 16l4.117-1.053A7.95 7.95 0 0 0 8.004 16c4.423 0 8-3.577 8-8a7.95 7.95 0 0 0-2.403-5.674M8.004 14.5a6.47 6.47 0 0 1-3.301-.902l-.236-.141-2.443.625.652-2.381-.154-.245A6.47 6.47 0 0 1 1.504 8a6.5 6.5 0 1 1 6.5 6.5'/>
+                                        <path d='M11.387 9.461c-.209-.104-1.236-.61-1.428-.679-.191-.07-.331-.105-.47.105-.139.209-.539.679-.661.818-.122.139-.244.157-.453.052-.209-.104-.882-.325-1.68-1.036-.62-.552-1.039-1.234-1.161-1.443-.122-.209-.013-.322.092-.426.094-.093.209-.244.314-.366.104-.122.139-.209.209-.348.07-.139.035-.261-.017-.366-.052-.104-.47-1.131-.644-1.548-.17-.408-.344-.353-.47-.359l-.401-.007c-.139 0-.366.052-.557.261-.191.209-.731.714-.731 1.74 0 1.026.748 2.017.852 2.156.104.139 1.472 2.248 3.568 3.151.499.215.888.344 1.191.44.5.159.955.137 1.314.083.401-.06 1.236-.505 1.411-.992.174-.487.174-.905.122-.992-.052-.087-.191-.139-.401-.244'/>
+                                    </svg>
+
+                                </a>
+
+                                </center>
                         </td>
 
 

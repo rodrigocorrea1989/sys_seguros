@@ -47,7 +47,8 @@ $stmt = $conn->prepare("
         seguros.precio AS monto_real,
         pagos.ven AS ven,
         pagos.pagado AS pagado,
-        pagos.monto AS montado
+        pagos.monto AS montado,
+        polizas.baja as baja2
     FROM pagos
     INNER JOIN polizas ON pagos.id_poliza = polizas.id
     INNER JOIN seguros ON polizas.id_seguro = seguros.id
@@ -79,7 +80,8 @@ $stmt->bind_result(
     $monto_real,
     $ven,
     $pagado,
-    $montado
+    $montado,
+    $baja2
 );
 
 if ($fecha_creacion) {
@@ -248,7 +250,7 @@ if (!empty($fecha_creacion)) {
 
                             <?php if ($pagado == 0) { ?>
                                 <a class="btn btn-danger" onclick="confirmar_pago();"
-                                    href="<?= dirname($_SERVER['PHP_SELF']) ?>/procesar_pago?id=<?php echo $id_poliza ?>&id_pago=<?php echo $id_pago ?>&cliente=<?php echo $id ?>&fecha_creacion=<?php echo $fecha_creacion ?>&fecha_vencimiento_new=<?php echo $fecha_vencimiento_new ?>&monto_real=<?php echo $montado ?>&dias=<?php echo $dias ?>&ven=<?php echo $ven ?>">
+                                    href="<?= dirname($_SERVER['PHP_SELF']) ?>/procesar_pago?id=<?php echo $id_poliza ?>&id_pago=<?php echo $id_pago ?>&cliente=<?php echo $id ?>&fecha_creacion=<?php echo $fecha_creacion ?>&fecha_vencimiento_new=<?php echo $fecha_vencimiento_new ?>&monto_real=<?php echo $montado ?>&dias=<?php echo $dias ?>&ven=<?php echo $ven ?>baja=<?php echo $baja2 ?>">
                                     Cobrar
                                 </a>
 
@@ -299,7 +301,8 @@ $stmt2 = $conn->prepare("
         seguros.precio AS monto_real,
         pagos.ven AS ven,
         pagos.pagado AS pagado,
-        pagos.monto AS montado
+        pagos.monto AS montado,
+        polizas.baja as baja
     FROM pagos
     INNER JOIN polizas ON pagos.id_poliza = polizas.id
     INNER JOIN seguros ON polizas.id_seguro = seguros.id
@@ -311,7 +314,7 @@ $stmt2 = $conn->prepare("
 $stmt2->bind_param("i", $id_poliza);
 
 if (!$stmt2->execute()) {
-    die("Error SQL: " . $stmt->error);
+    die("Error SQL: " . $stmt2->error);
 }
 
 $stmt2->store_result();
@@ -332,18 +335,19 @@ $stmt2->bind_result(
     $monto_real,
     $ven,
     $pagado,
-    $montado
+    $montado,
+    $baja
 );
 
 while ($stmt2->fetch()) {
 
-    echo $nombre_seguro . "<br>";
+    //echo $nombre_seguro . "<br>";
 
-    echo date('d/m/Y H:i', strtotime((string)$fecha_creacion)) . "<br>";
+    //echo date('d/m/Y H:i', strtotime((string)$fecha_creacion)) . "<br>";
 
-    echo date('d/m/Y H:i', strtotime((string)$fecha_vencimiento2)) . "<br>";
+    //echo date('d/m/Y H:i', strtotime((string)$fecha_vencimiento2)) . "<br>";
 
-    echo "PAGADO: " . $pagado . "<br>";
+    //echo "PAGADO: " . $pagado . "<br>";
 
     $fecha_vencimiento_new = date(
         'Y-m-d H:i:s',
@@ -376,16 +380,18 @@ while ($stmt2->fetch()) {
 
     if ($fecha_hoy >= $timestamp_fechavenc && $pagado == 1) {
 
-        echo "----SE CREA OTRO PAGO---";
+        if ($baja == 0) {
 
-        $sql_insert = "INSERT INTO pagos
+            echo "----SE CREA OTRO PAGO---";
+
+            $sql_insert = "INSERT INTO pagos
                 (id_poliza, fecha_creacion, fecha_vencimiento, monto, pagado)
             VALUES ('$id_poliza', '$fecha_creacion2' , '$fecha_vencimiento2', '$monto_real', 0)";
 
-        $result = mysqli_query($conn, $sql_insert);
+            $result = mysqli_query($conn, $sql_insert);
 
-
-        header("Location:$base/pagos?id=$id_poliza&cliente=$id");
+            header("Location:$base/pagos?id=$id_poliza&cliente=$id");
+        }
     }
 }
 
