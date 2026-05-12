@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2026 a las 21:13:02
+-- Tiempo de generación: 12-05-2026 a las 03:59:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -42,12 +42,8 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`ID`, `DNI`, `NOMBRE`, `APELLIDO`, `DIRECCION`, `WHATSAPP`, `EMAIL`) VALUES
-(1, 34449871, 'rodrigo', 'correa', 'chubut 1606', 543764338752, 'rodrigo@hotmail.com'),
-(4, 2064598799, 'Rodrigo', 'Corrae', 'la rioja 6060', 3764338752, 'rogelio@hotmail.com'),
-(5, 51515151, 'juan perez', 'juan peres', '151515', 51515151, 'rodrigo@hotmail.com'),
-(6, 1212, 'test', 'test', 'chubut 1606', 1616161, 'rodrigo.eduardo.correa.7@hotmail.com'),
-(7, 515151, 'test2', 'test2', 'asas', 15151, 'rodrigo.eduardo.correa.7@hotmail.com'),
-(8, 121414, 'Rodrigo', 'Roa', 'kaksmjkajms', 543764338752, 'rodrigo.eduardo.correa.7@hotmail.com');
+(5, 34449871, 'Juan', 'D&iacute;as', 'Santa Clara 2050', 5489262626, 'Dias@hotmail.com'),
+(6, 20344498871, 'rroa', 'roa', 'calle falsa 11:12', 543764338752, 'rroa@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -67,56 +63,105 @@ CREATE TABLE `historial` (
 --
 
 INSERT INTO `historial` (`id`, `usuario`, `fecha`, `accion`) VALUES
-(1, 'rcorrea', '2026-05-08 12:51:22', 'Actualizar Cliente'),
-(2, 'rcorrea', '2026-05-08 12:52:30', 'Actualizar Pago'),
-(3, 'rcorrea', '2026-05-08 13:12:24', 'Actualizar Seguro'),
-(4, 'rcorrea', '2026-05-08 13:13:38', 'Actualizar Usuario'),
-(5, 'rcorrea', '2026-05-08 13:21:52', 'Actualizar Usuario'),
-(6, 'rcorrea', '2026-05-08 13:22:01', 'Actualizar Usuario'),
-(7, 'rcorrea', '2026-05-08 13:23:16', 'Actualizar Usuario'),
-(8, 'rcorrea', '2026-05-08 13:23:48', 'Actualizar Usuario'),
-(9, 'rcorrea', '2026-05-08 13:26:18', 'Actualizar Usuario'),
-(10, 'rcorrea', '2026-05-08 13:26:33', 'Actualizar Usuario'),
-(11, 'rcorrea', '2026-05-08 13:26:36', 'Actualizar Usuario'),
-(12, 'rcorrea', '2026-05-08 13:27:42', 'Actualizar Usuario'),
-(13, 'rcorrea', '2026-05-08 13:35:55', 'Procesar Pago'),
-(14, 'rcorrea', '2026-05-08 13:38:40', 'Procesar Pago'),
-(15, 'rcorrea', '2026-05-08 13:48:22', 'Actualizar Seguro'),
-(16, 'rcorrea', '2026-05-08 13:53:29', 'Procesar Pago'),
-(17, 'rcorrea', '2026-05-08 13:53:31', 'Procesar Pago'),
-(18, 'rcorrea', '2026-05-08 13:53:34', 'Procesar Pago'),
-(19, 'rcorrea', '2026-05-08 13:53:39', 'Procesar Pago'),
-(20, 'rcorrea', '2026-05-08 13:53:58', 'Procesar Pago'),
-(21, 'rcorrea', '2026-05-08 13:54:44', 'Procesar Pago'),
-(22, 'rcorrea', '2026-05-08 16:31:35', 'Actualizar Pago'),
-(23, 'rcorrea', '2026-05-09 12:25:32', 'Procesar Pago'),
-(24, 'rcorrea', '2026-05-09 12:29:26', 'Procesar Pago'),
-(25, 'rcorrea', '2026-05-09 12:31:31', 'Procesar Pago'),
-(26, 'rcorrea', '2026-05-09 12:39:06', 'Procesar Pago'),
-(27, 'rcorrea', '2026-05-09 12:40:55', 'Procesar Pago'),
-(28, 'rcorrea', '2026-05-09 12:42:18', 'Procesar Pago'),
-(29, 'rcorrea', '2026-05-09 13:09:18', 'Procesar Pago'),
-(30, 'rcorrea', '2026-05-09 13:13:38', 'Procesar Pago'),
-(31, 'rcorrea', '2026-05-09 13:14:24', 'Procesar Pago'),
-(32, 'rcorrea', '2026-05-09 13:14:36', 'Procesar Pago'),
-(33, 'rcorrea', '2026-05-09 14:34:48', 'Procesar Pago'),
-(34, 'rcorrea', '2026-05-09 14:47:03', 'Procesar Pago'),
-(35, 'rcorrea', '2026-05-09 15:32:22', 'Procesar Pago'),
-(36, 'rcorrea', '2026-05-09 15:33:06', 'Procesar Pago'),
-(37, 'rcorrea', '2026-05-09 15:33:56', 'Procesar Pago'),
-(38, 'rcorrea', '2026-05-09 15:35:06', 'Procesar Pago'),
-(39, 'rcorrea', '2026-05-09 15:42:23', 'Procesar Pago'),
-(40, 'rcorrea', '2026-05-09 15:43:17', 'Procesar Pago'),
-(41, 'rcorrea', '2026-05-09 15:45:12', 'Procesar Pago'),
-(42, 'rcorrea', '2026-05-09 15:46:08', 'Procesar Pago'),
-(43, 'rcorrea', '2026-05-09 18:03:48', 'Actualizar Pago'),
-(44, 'rcorrea', '2026-05-09 18:04:34', 'Procesar Pago'),
-(45, 'rcorrea', '2026-05-10 12:50:27', 'Insertar Poliza'),
-(46, 'rcorrea', '2026-05-10 12:52:13', 'Insertar Poliza'),
-(47, 'rcorrea', '2026-05-10 13:37:55', 'Baja Poliza'),
-(48, 'rcorrea', '2026-05-10 13:39:00', 'Actualizar Pago'),
-(49, 'rcorrea', '2026-05-10 15:46:14', 'Actualizar Cliente'),
-(50, 'rcorrea', '2026-05-10 16:11:26', 'Baja Poliza');
+(1, 'rcorrea', '2026-05-05 16:36:40', 'Eliminar Usuario'),
+(2, 'rcorrea', '2026-05-05 16:36:41', 'Eliminar Usuario'),
+(3, 'rcorrea', '2026-05-07 16:36:43', 'Eliminar Usuario'),
+(4, 'rcorrea', '2026-05-08 16:43:12', 'Insertar Usuario'),
+(5, 'rcorrea', '2026-05-09 16:43:31', 'Eliminar Usuario'),
+(6, 'rcorrea', '2026-05-10 16:43:47', 'Insertar Usuario'),
+(7, 'rcorrea', '2026-05-11 16:44:21', 'Actualizar Usuario'),
+(8, 'rcorrea', '2026-05-11 16:46:13', 'Insertar Cliente'),
+(9, 'rcorrea', '2026-05-11 17:07:46', 'Insertar Cliente'),
+(10, 'rcorrea', '2026-05-11 17:08:05', 'Actualizar Cliente'),
+(11, 'rcorrea', '2026-05-11 17:08:19', 'Actualizar Cliente'),
+(12, 'rcorrea', '2026-05-11 17:08:28', 'Eliminar Cliente'),
+(13, 'rcorrea', '2026-05-11 17:13:01', 'Insertar Seguro'),
+(14, 'rcorrea', '2026-05-11 17:13:25', 'Insertar Poliza'),
+(15, 'rcorrea', '2026-05-11 17:14:27', 'Actualizar Seguro'),
+(16, 'rcorrea', '2026-05-11 17:14:36', 'Actualizar Seguro'),
+(17, 'rcorrea', '2026-05-11 17:16:10', 'Insertar Seguro'),
+(18, 'rcorrea', '2026-05-11 17:16:31', 'Insertar Seguro'),
+(19, 'rcorrea', '2026-05-11 17:16:37', 'Eliminar Seguro'),
+(20, 'rcorrea', '2026-05-11 17:16:44', 'Actualizar Seguro'),
+(21, 'rcorrea', '2026-05-11 17:17:25', 'Insertar Poliza'),
+(22, 'rcorrea', '2026-05-11 17:22:49', 'Insertar Seguro'),
+(23, 'rcorrea', '2026-05-11 17:22:53', 'Eliminar Seguro'),
+(24, 'rcorrea', '2026-05-11 17:23:29', 'Actualizar Pago'),
+(25, 'rcorrea', '2026-05-11 17:25:51', 'Actualizar Pago'),
+(26, 'rcorrea', '2026-05-11 17:29:46', 'Actualizar Pago'),
+(27, 'rcorrea', '2026-05-11 17:29:55', 'Actualizar Pago'),
+(28, 'rcorrea', '2026-05-11 17:30:05', 'Baja Poliza'),
+(29, 'rcorrea', '2026-05-11 17:31:53', 'Actualizar Cliente'),
+(30, 'rcorrea', '2026-05-11 17:32:04', 'Actualizar Cliente'),
+(31, 'rcorrea', '2026-05-11 17:32:14', 'Actualizar Cliente'),
+(32, 'rcorrea', '2026-05-11 17:32:19', 'Actualizar Cliente'),
+(33, 'rcorrea', '2026-05-11 21:22:44', 'Insertar Usuario'),
+(34, 'rcorrea', '2026-05-11 21:31:24', 'Actualizar Usuario'),
+(35, 'rcorrea', '2026-05-11 21:31:32', 'Actualizar Usuario'),
+(36, 'rcorrea', '2026-05-11 21:31:40', 'Actualizar Usuario'),
+(37, 'rcorrea', '2026-05-11 21:32:00', 'Actualizar Usuario'),
+(38, 'rcorrea', '2026-05-11 21:32:13', 'Actualizar Usuario'),
+(39, 'rcorrea', '2026-05-11 21:32:40', 'Actualizar Usuario'),
+(40, 'rcorrea', '2026-05-11 21:32:47', 'Actualizar Usuario'),
+(41, 'rcorrea', '2026-05-11 21:33:17', 'Actualizar Usuario'),
+(42, 'rcorrea', '2026-05-11 21:33:30', 'Actualizar Usuario'),
+(43, 'rcorrea', '2026-05-11 21:33:36', 'Actualizar Usuario'),
+(44, 'rcorrea', '2026-05-11 21:33:44', 'Actualizar Usuario'),
+(45, 'rcorrea', '2026-05-11 21:33:50', 'Actualizar Usuario'),
+(46, 'rcorrea', '2026-05-11 21:33:57', 'Actualizar Usuario'),
+(47, 'rcorrea', '2026-05-11 21:34:01', 'Actualizar Usuario'),
+(48, 'rcorrea', '2026-05-11 21:34:53', 'Actualizar Usuario'),
+(49, 'lromero20', '2026-05-11 21:36:04', 'Actualizar Usuario'),
+(50, 'lromero20', '2026-05-11 22:00:28', 'Actualizar Cliente'),
+(51, 'lromero20', '2026-05-11 22:00:37', 'Actualizar Cliente'),
+(52, 'lromero20', '2026-05-11 22:00:55', 'Actualizar Cliente'),
+(53, 'lromero20', '2026-05-11 22:01:08', 'Actualizar Cliente'),
+(54, 'lromero20', '2026-05-11 22:01:41', 'Insertar Cliente'),
+(55, 'lromero20', '2026-05-11 22:06:01', 'Insertar Poliza'),
+(56, 'lromero20', '2026-05-11 22:07:26', 'Actualizar Pago'),
+(57, 'lromero20', '2026-05-11 22:10:43', 'Baja Poliza'),
+(58, 'lromero20', '2026-05-11 22:22:20', 'Insertar Seguro'),
+(59, 'lromero20', '2026-05-11 22:23:15', 'Insertar Cliente'),
+(60, 'lromero20', '2026-05-11 22:23:28', 'Actualizar Cliente'),
+(61, 'lromero20', '2026-05-11 22:23:39', 'Insertar Poliza'),
+(62, 'lromero20', '2026-05-11 22:24:40', 'Actualizar Pago'),
+(63, 'lromero20', '2026-05-11 22:25:39', 'Actualizar Pago'),
+(64, 'lromero20', '2026-05-11 22:26:16', 'Actualizar Cliente'),
+(65, 'lromero20', '2026-05-11 22:28:33', 'Actualizar Seguro'),
+(66, 'lromero20', '2026-05-11 22:28:36', 'Actualizar Seguro'),
+(67, 'lromero20', '2026-05-11 22:38:25', 'Actualizar Pago'),
+(68, 'lromero20', '2026-05-11 22:39:05', 'Baja Poliza'),
+(69, 'lromero20', '2026-05-11 22:43:38', 'Procesar Pago'),
+(70, 'lromero20', '2026-05-11 22:44:36', 'Eliminar Usuario'),
+(71, 'lromero20', '2026-05-11 22:44:38', 'Eliminar Usuario'),
+(72, 'lromero20', '2026-05-11 22:44:48', 'Baja Poliza'),
+(73, 'lromero20', '2026-05-11 22:44:52', 'Baja Poliza'),
+(74, 'lromero20', '2026-05-11 22:44:54', 'Baja Poliza'),
+(75, 'lromero20', '2026-05-11 22:45:30', 'Eliminar Cliente'),
+(76, 'lromero20', '2026-05-11 22:45:33', 'Eliminar Cliente'),
+(77, 'lromero20', '2026-05-11 22:46:04', 'Eliminar Seguro'),
+(78, 'lromero20', '2026-05-11 22:46:07', 'Eliminar Seguro'),
+(79, 'lromero20', '2026-05-11 22:46:09', 'Eliminar Seguro'),
+(80, 'lromero20', '2026-05-11 22:46:16', 'Eliminar Cliente'),
+(81, 'lromero20', '2026-05-11 22:53:01', 'Insertar Cliente'),
+(82, 'lromero20', '2026-05-11 22:54:04', 'Insertar Seguro'),
+(83, 'lromero20', '2026-05-11 22:54:18', 'Insertar Poliza'),
+(84, 'lromero20', '2026-05-11 22:55:07', 'Actualizar Pago'),
+(85, 'lromero20', '2026-05-11 22:55:11', 'Procesar Pago'),
+(86, 'lromero20', '2026-05-11 22:55:17', 'Procesar Pago'),
+(87, 'lromero20', '2026-05-11 22:55:19', 'Procesar Pago'),
+(88, 'lromero20', '2026-05-11 22:55:33', 'Procesar Pago'),
+(89, 'lromero20', '2026-05-11 22:55:43', 'Procesar Pago'),
+(90, 'lromero20', '2026-05-11 22:56:19', 'Actualizar Pago'),
+(91, 'lromero20', '2026-05-11 22:57:02', 'Insertar Cliente'),
+(92, 'lromero20', '2026-05-11 22:57:11', 'Insertar Poliza'),
+(93, 'lromero20', '2026-05-11 22:57:22', 'Actualizar Pago'),
+(94, 'lromero20', '2026-05-11 22:57:57', 'Baja Poliza'),
+(95, 'lromero20', '2026-05-11 22:58:00', 'Insertar Poliza'),
+(96, 'lromero20', '2026-05-11 22:58:13', 'Actualizar Pago'),
+(97, 'lromero20', '2026-05-11 22:58:37', 'Procesar Pago'),
+(98, 'lromero20', '2026-05-11 22:58:44', 'Baja Poliza'),
+(99, 'lromero20', '2026-05-11 22:58:47', 'Procesar Pago');
 
 -- --------------------------------------------------------
 
@@ -140,8 +185,13 @@ CREATE TABLE `pagos` (
 --
 
 INSERT INTO `pagos` (`id`, `id_poliza`, `fecha_creacion`, `fecha_vencimiento`, `fecha_pago`, `ven`, `monto`, `pagado`) VALUES
-(2, 37, '2026-03-10 12:52:00', '2026-04-10 12:52:00', '2026-05-10 16:11:59', 1, 18.00, 1),
-(4, 37, '2026-04-10 12:52:00', '2026-05-11 12:52:00', NULL, 0, 18.00, 0);
+(1, 42, '2026-01-11 22:54:00', '2026-02-10 22:54:00', '2026-05-11 22:55:11', 1, 250000.00, 1),
+(2, 42, '2026-02-10 22:54:00', '2026-03-12 22:54:00', '2026-05-11 22:55:17', 1, 250000.00, 1),
+(3, 42, '2026-03-12 22:54:00', '2026-04-11 22:54:00', '2026-05-11 22:55:19', 1, 250000.00, 1),
+(4, 42, '2026-04-11 22:54:00', '2026-05-11 22:54:00', '2026-05-11 22:55:33', 1, 250000.00, 1),
+(5, 42, '2026-05-11 22:54:00', '2026-05-10 22:54:00', '2026-05-11 22:55:43', 1, 250000.00, 0),
+(7, 44, '2026-02-11 22:58:00', '2026-03-10 22:58:00', '2026-05-11 22:58:37', 1, 250000.00, 1),
+(8, 44, '2026-03-13 22:58:00', '2026-04-12 22:58:00', '2026-05-11 22:58:47', 1, 250000.00, 1);
 
 -- --------------------------------------------------------
 
@@ -164,10 +214,9 @@ CREATE TABLE `polizas` (
 --
 
 INSERT INTO `polizas` (`id`, `id_cliente`, `id_seguro`, `numero`, `fecha_alta`, `fecha_baja`, `baja`) VALUES
-(34, 4, 1, 11111, '2026-05-07 21:19:00', NULL, 0),
-(35, 8, 1, 11112, '2026-05-08 10:54:00', NULL, 0),
-(36, 8, 1, 11113, '2026-05-10 12:50:00', NULL, 0),
-(37, 8, 2, 11114, '2026-05-10 12:52:00', '2026-05-10 16:11:26', 0);
+(42, 5, 6, 123566, '2026-05-11 22:54:00', NULL, 0),
+(43, 6, 6, 123567, '2026-05-11 22:57:00', '2026-05-11 22:57:57', 1),
+(44, 6, 6, 123568, '2026-05-11 22:57:00', '2026-05-11 22:58:44', 1);
 
 -- --------------------------------------------------------
 
@@ -188,8 +237,7 @@ CREATE TABLE `seguros` (
 --
 
 INSERT INTO `seguros` (`id`, `nombre`, `descripcion`, `precio`, `dias`) VALUES
-(1, 'Seguro Hogar Plus', 'Plan médico que cubre consultas, estudios básicos, urgencias y hospitalización. Incluye atención para todo el grupo familiar.', 52.00, 30),
-(2, 'Seguro Vida Protegida', 'Seguro de vida que brinda respaldo econ&amp;oacute;mico a la familia en caso de fallecimiento o incapacidad total. Incluye cobertura por accidentes.', 18.00, 31);
+(6, 'Seguro Familiar', 'Cobertura Familiar', 250000.00, 30);
 
 -- --------------------------------------------------------
 
@@ -211,10 +259,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID`, `NOMBRE`, `APELLIDO`, `USUARIO`, `PASS`, `TIPO`) VALUES
-(5, 'rodrigo', 'correa', 'rcorrea', '422962', 0),
-(6, 'rodri', 'roa', 'rcorrea', '422962', 0),
-(7, 'manco', 'correa', 'rcorrea', '123456', 0),
-(8, 'Rogelio', 'funer', 'rcorrea', '12345', 0);
+(5, 'rodrigo', 'correa', 'rcorrea', '422962', 0);
 
 --
 -- Índices para tablas volcadas
@@ -265,37 +310,37 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `polizas`
 --
 ALTER TABLE `polizas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `seguros`
 --
 ALTER TABLE `seguros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas

@@ -7,7 +7,7 @@ include("comprobar_acceso.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $dni_original = $_POST['dni']; // para el WHERE
+    $id = $_POST['id_cliente']; // para el WHERE
 
     $dni = htmlentities($_POST['dni']);
     $nombre = htmlentities($_POST['nombre']);
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 DIRECCION = ?, 
                 WHATSAPP = ?, 
                 EMAIL = ?
-            WHERE DNI = ?";
+            WHERE ID = ?";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param(
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $direccion,
         $wp,
         $mail,
-        $dni_original
+        $id
     );
 
     $usuario = $_SESSION['usuario'];
