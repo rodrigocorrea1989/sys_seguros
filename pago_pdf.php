@@ -27,7 +27,8 @@ SELECT
     pagos.fecha_vencimiento,
     seguros.nombre AS seguro,
     seguros.descripcion AS des,
-    polizas.numero AS npoliza
+    polizas.numero AS npoliza,
+    pagos.fecha_pago AS fecha_pago
 FROM pagos
 
 INNER JOIN polizas 
@@ -72,7 +73,7 @@ $monto = number_format((float)$row['monto'], 2, ',', '.');
 
 $fecha_pago = date(
     'd/m/Y H:i',
-    strtotime($row['fecha_creacion'])
+    strtotime($row['fecha_pago'])
 );
 
 $fecha_vencimiento = date(

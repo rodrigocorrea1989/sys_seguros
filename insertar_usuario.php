@@ -21,11 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssss", $nombre, $apellido, $usuario, $contraseña, $tipo);
 
-    $usuario = $_SESSION['usuario'];
+    $usuario2 = $_SESSION['usuario'];
     $accion = "Insertar Usuario";
 
     $sql_log = "INSERT INTO historial (usuario, fecha, accion)
-            VALUES ('$usuario', NOW(), '$accion')";
+            VALUES ('$usuario2', NOW(), '$accion')";
 
     $conn->query($sql_log);
 

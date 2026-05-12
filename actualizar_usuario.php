@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recoger datos del formulario
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
-    $usuario = 1;
+    $usuario = $_POST['usuario'];
     $contraseña = $_POST['contraseña'];
     $tipo = $_POST['tipo'];
 
@@ -32,11 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("sssis", $nombre, $apellido, $usuario, $tipo, $id);
     }
 
-    $usuario = $_SESSION['usuario'];
+    $usuario2 = $_SESSION['usuario'];
     $accion = "Actualizar Usuario";
 
     $sql_log = "INSERT INTO historial (usuario, fecha, accion)
-            VALUES ('$usuario', NOW(), '$accion')";
+            VALUES ('$usuario2', NOW(), '$accion')";
 
     $conn->query($sql_log);
 
